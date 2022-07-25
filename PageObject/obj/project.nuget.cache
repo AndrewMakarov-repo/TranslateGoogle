@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "FGlg0693bgIDLNy4vnXp15XUT9ddk0gQjWpHeG3MC3NxJmG+P606QlT4gAcHggXm4+I1AJrB0QpNiEPuoVPMGw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Andrey_Makarov\\source\\repos\\TranslateGoogleCom\\PageObject\\PageObjects.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Andrey_Makarov\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Andrey_Makarov\\.nuget\\packages\\selenium.webdriver\\4.3.0\\selenium.webdriver.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}
