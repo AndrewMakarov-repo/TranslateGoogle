@@ -36,5 +36,20 @@ namespace Core.Utilities.Extentions
             driver.HoverAndClick(element);
         }
 
+        //SELECT FROM DROP DOWN MENU
+
+        private static void SelectFromDropDownMenu(this IWebDriver driver, By locator)
+        { 
+            var action = new Actions(driver);
+            action.MoveToElement(driver.FindElement(locator)).Click().Perform();
+        }
+
+        public static void SelectSourceFromDropDownMenu(this IWebDriver driver, By locator)
+        {
+            var action = new Actions(driver);
+            var element = driver.FindElement(locator);
+            driver.SelectFromDropDownMenu((By)element);
+        }
+
     }
 }

@@ -112,10 +112,8 @@ namespace TranslateGoogleCom.PageObjects
 
             var selectedSourceElementFromDropDown = this.driver.FindElements(By.XPath(string.Format(SelectedSourceElementFromDropDownLocator, language)));
             var selectedLanguageFromDropDown = selectedSourceElementFromDropDown.Where(x => x.Displayed).FirstOrDefault();
-            if (selectedLanguageFromDropDown != null)
-            {
-                selectedLanguageFromDropDown.Click();
-            }
+
+            driver.HoverAndClick(selectedLanguageFromDropDown);
         }
         #endregion
 
@@ -180,18 +178,9 @@ namespace TranslateGoogleCom.PageObjects
             }
             //Wait.For(() => driver.FindElements(By.XPath(string.Format(SelectedTargetElementFromDropDownLocator, language))).Where(x=>x.Displayed).Any(), 5000);
             var selectedTargetElementFromDropDown = this.driver.FindElements(By.XPath(string.Format(SelectedTargetElementFromDropDownLocator, language)));
-            //Wait.For(() => selectedTargetElementFromDropDown.Where(x => x.Displayed).Any());
             var selectedLanguageFromDropDown = selectedTargetElementFromDropDown.Where(x => x.Displayed).FirstOrDefault();
-            //TODO: change to explicit wait 
-            //Thread.Sleep(1500);
 
-            if (selectedLanguageFromDropDown != null)
-            {
-                driver.HoverAndClick(selectedLanguageFromDropDown);
-                //var action = new Actions(driver);
-                //action.MoveToElement(selectedLanguageFromDropDown).Perform();
-                //selectedLanguageFromDropDown.Click();
-            }
+            driver.HoverAndClick(selectedLanguageFromDropDown);
         }
         #endregion
     }
