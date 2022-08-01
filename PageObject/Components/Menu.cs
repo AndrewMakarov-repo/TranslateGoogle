@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PageObjects.Components
@@ -86,9 +87,11 @@ namespace PageObjects.Components
             {
                 throw new Exception("Drop-down menu is not found");
             }
-
+            Thread.Sleep(5000);
             var selectedSourceElementFromDropDown = this.rootElement.FindElements(By.XPath(string.Format(SelectedElementFromDropDownLocator, language)));
+            Thread.Sleep(5000);
             var selectedLanguageFromDropDown = selectedSourceElementFromDropDown.Where(x => x.Displayed).FirstOrDefault();
+            Thread.Sleep(5000);
 
             driver.HoverAndClick(selectedLanguageFromDropDown);
 

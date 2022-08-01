@@ -17,20 +17,62 @@ namespace TranslateGoogleCom.Tests
         }
         #endregion
 
+        //[Test]
+
+        //public void TestForCat()
+        //{
+        //    var text = "cat";
+        //    var expectedResult = "кошка";
+
+        //    homePage.SourceMenu.SelectLanguage("English");
+        //    homePage.TargetMenu.SelectLanguage("Russian");
+        //    homePage.FillInSource(text);
+
+        //    var actualResult = homePage.GetTargetText();
+        //    Assert.AreEqual(expectedResult, actualResult);
+
+        //}
+
         [Test]
 
-        public void TestForCat()
+        public void TestPerAspira()
         {
-            var text = "cat";
-            var expectedResult = "кошка";
+            var text = "Per aspera ad astra";
+            var expectedResult = "Через тернии к звездам";
 
-            homePage.SelectSourceLanguage("English");
-            homePage.SelectTargetLanguage("Russian");
+            homePage.SourceMenu.SelectLanguage("Latin");
+            homePage.TargetMenu.SelectLanguage("Russian");
             homePage.FillInSource(text);
 
             var actualResult = homePage.GetTargetText();
             Assert.AreEqual(expectedResult, actualResult);
 
         }
+
+        //[Test]
+
+        //public void TestForHello()
+        //{
+        //    var text = "hello";
+        //    var expectedResult = "ciao";
+        //    var afterReverseExpectedResult = "hello";
+        //    var afterReverseExpectedSourceLanguage = "Italian";
+        //    var afterReverseExpectedTargetLanguage = "English";
+
+        //    homePage.SourceMenu.SelectLanguage("English");
+        //    homePage.TargetMenu.SelectLanguage("Italian");
+        //    homePage.FillInSource(text);
+
+        //    var actualResult = homePage.GetTargetText();
+        //    Assert.AreEqual(expectedResult, actualResult);
+
+        //    //CLICK REVERSE
+        //    Assert.Multiple(() =>
+        //    {
+        //        Assert.AreEqual(afterReverseExpectedResult, actualResult);
+        //        Assert.AreEqual(homePage.SourceMenu.SelectLanguage, afterReverseExpectedTargetLanguage);
+        //        Assert.AreEqual();
+        //    });
+
     }
 }

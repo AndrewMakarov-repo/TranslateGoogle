@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Core.Utilities.Extentions
@@ -25,7 +26,9 @@ namespace Core.Utilities.Extentions
         public static void HoverAndClick(this IWebDriver driver, IWebElement element)
         {
             var action = new Actions(driver);
+            Thread.Sleep(5000);
             action.MoveToElement(element).Perform();
+            Thread.Sleep(5000);
             element.Click();
         }
 
