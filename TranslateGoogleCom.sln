@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TranslateGoogleCom", "TranslateGoogleCom\TranslateGoogleCom.csproj", "{15891493-C25A-42DD-A1E1-D71CB211996B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObjects", "PageObject\PageObjects.csproj", "{E6F5C2D3-7646-48FE-824F-1A307A9ED593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageObjects", "PageObject\PageObjects.csproj", "{E6F5C2D3-7646-48FE-824F-1A307A9ED593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F0E134CC-750D-43B7-A691-BE839B97398B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{F0E134CC-750D-43B7-A691-BE839B97398B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.UI", "Core.UI\Core.UI.csproj", "{0261046B-A524-4C30-BB50-5EFF946C9727}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{F0E134CC-750D-43B7-A691-BE839B97398B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0E134CC-750D-43B7-A691-BE839B97398B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0E134CC-750D-43B7-A691-BE839B97398B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0261046B-A524-4C30-BB50-5EFF946C9727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0261046B-A524-4C30-BB50-5EFF946C9727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0261046B-A524-4C30-BB50-5EFF946C9727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0261046B-A524-4C30-BB50-5EFF946C9727}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

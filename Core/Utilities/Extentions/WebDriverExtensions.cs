@@ -26,9 +26,10 @@ namespace Core.Utilities.Extentions
         public static void HoverAndClick(this IWebDriver driver, IWebElement element)
         {
             var action = new Actions(driver);
-            Thread.Sleep(5000);
-            action.MoveToElement(element).Perform();
-            Thread.Sleep(5000);
+            //Thread.Sleep(500);
+            //Wait.For(() => driver.FindElement(element).Displayed);
+            action.MoveToElement(element).Build().Perform();
+            //Thread.Sleep(500);
             element.Click();
         }
 
@@ -53,6 +54,8 @@ namespace Core.Utilities.Extentions
             var element = driver.FindElement(locator);
             driver.SelectFromDropDownMenu((By)element);
         }
+
+
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Core.Utilities;
+﻿using Core.UI.PageElements;
+using Core.Utilities;
 using OpenQA.Selenium;
 using PageObjects.Components;
 
@@ -10,6 +11,8 @@ namespace TranslateGoogleCom.PageObjects
         private static readonly By RootTargetMenuLocator = By.XPath("//c-wiz[@data-node-index='3;0']//c-wiz[@data-node-index='1;0']/div[./button][2]");
         private static readonly By TargetTextElementLocator = By.XPath("//div[@data-result-index]//span[@data-phrase-index='0']/span");//кошка
         private static readonly By SourceTextAreaLocator = By.XPath("//textarea[@aria-label='Source text']");
+        private static readonly By ReverseButtonLocator = By.XPath("(.//*[@aria-label='Swap languages (Ctrl+Shift+S)'])[1]");   
+        //".//*[@id='ow25']/div/span/button/div[3]") it works too.//*[@id='ow25']//button
 
         private IWebDriver driver;
 
@@ -49,6 +52,15 @@ namespace TranslateGoogleCom.PageObjects
             var sourceTextArea = this.driver.FindElement(SourceTextAreaLocator);
             sourceTextArea.SendKeys(text);
             sourceTextArea.SendKeys(Keys.Enter);
+        }
+
+        //property for reverse button (instance of the reverse button)
+        public Button ReverseButton
+        {
+            get
+            {
+                return new Button(driver, ReverseButtonLocator);
+            }
         }
     }
 }

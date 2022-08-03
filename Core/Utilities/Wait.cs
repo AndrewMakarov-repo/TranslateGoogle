@@ -5,7 +5,7 @@ namespace Core.Utilities
 {
     public static class Wait
     {
-        private static readonly int DefaultTimeOutMs = 30000;
+        private static readonly int DefaultTimeOutMs = 15000;
 
         public static void For(Func<bool> condition)
         {

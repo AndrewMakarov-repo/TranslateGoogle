@@ -1,4 +1,6 @@
-﻿using Core.Utilities.Extentions;
+﻿using Core.UI.PageElements;
+using Core.Utilities;
+using Core.Utilities.Extentions;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,7 @@ namespace PageObjects.Components
         private static readonly By QuickMenuButtonsLocator = By.XPath(".//button[@aria-selected='false']");
         private static readonly By DropDownMenuButtonLocator = By.XPath(".//button[contains(@aria-label,'More')]");
         private static string SelectedElementFromDropDownLocator = "//div[@data-language-code]/div[text()='{0}']";
+        private static readonly By DropDownMenuLocator = By.CssSelector("c-wiz[data-node-index='2;0']");
 
         //ctor
         public Menu(IWebDriver driver, IWebElement rootElement)
@@ -87,11 +90,13 @@ namespace PageObjects.Components
             {
                 throw new Exception("Drop-down menu is not found");
             }
-            Thread.Sleep(5000);
+            Wait.For(() => driver.FindElement(DropDownMenuLocator).Displayed);
+            //Thread.Sleep(500); 
+            
+            Wait.For(() => rootElement.FindElements(By.XPath(string.Format(SelectedElementFromDropDownLocator, language))).Any(x => x.Displayed));
             var selectedSourceElementFromDropDown = this.rootElement.FindElements(By.XPath(string.Format(SelectedElementFromDropDownLocator, language)));
-            Thread.Sleep(5000);
+            Console.WriteLine(selectedSourceElementFromDropDown.Count);
             var selectedLanguageFromDropDown = selectedSourceElementFromDropDown.Where(x => x.Displayed).FirstOrDefault();
-            Thread.Sleep(5000);
 
             driver.HoverAndClick(selectedLanguageFromDropDown);
 
@@ -113,5 +118,7 @@ namespace PageObjects.Components
             var possibleElement = quickMenuButtons.Where(x => string.Equals(x.Text, language, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
             return possibleElement != null;
         }
+
+
     }
 }
