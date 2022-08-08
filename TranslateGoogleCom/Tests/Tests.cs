@@ -1,10 +1,5 @@
 ﻿using Core;
-using Core.UI.PageElements;
-using Core.Utilities.Extentions;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using PageObjects.Components;
-using System.Threading;
 using TranslateGoogleCom.PageObjects;
 
 namespace TranslateGoogleCom.Tests
@@ -12,9 +7,12 @@ namespace TranslateGoogleCom.Tests
     public class Tests : BaseTest
     {
         public HomePage homePage;
-        private IWebDriver reverseButton;
-        private By rootElementLocator;
 
+        private static readonly object[] _sourceLists =
+        {
+            new object[] {"English", "Russian", "cat", "кошка"},   //case 1
+            new object[] {"English", "Russian", "dog", "собака"}   //case 2
+        };
 
         [SetUp]
 
@@ -25,70 +23,117 @@ namespace TranslateGoogleCom.Tests
         }
         #endregion
 
-        [Test]
-        public void TestForCat()
+        #region TestCases
+        //[TestCase("cat","кошка","English", "Russian")]
+        //[TestCase("dog", "собака","English", "Russian")]
+        //[TestCase("mouse", "мыши","English", "Russian")]
+        //[TestCase("Hello", "Ciao", "English", "Italian")]
+
+        //[TestCaseSource(typeof(TestDataReader), "TestCases")]
+        //public void DataDrivenTestFromFile(string sourceLanguage, string targetLanguage, string text, string expectedResult)//see TestDataReader tab
+        //{
+        //    //Arrange
+        //    //var text = "cat";
+        //    //var expectedResult = "кошка";
+
+        //    //Act
+        //    homePage.SourceMenu.SelectLanguage(sourceLanguage);
+        //    homePage.TargetMenu.SelectLanguage(targetLanguage);
+        //    homePage.FillInSource(text);
+
+        //    //Assert
+        //    var actualResult = homePage.GetTargetText();
+        //    Assert.AreEqual(expectedResult, actualResult);
+        //}
+
+        [TestCaseSource(nameof(_sourceLists))]
+        public void DataDrivenTestFromObjects(string sourceLanguage, string targetLanguage, string text, string expectedResult)
         {
             //Arrange
-            var text = "cat";
-            var expectedResult = "кошка";
+            //var text = "cat";
+            //var expectedResult = "кошка";
 
             //Act
-            homePage.SourceMenu.SelectLanguage("English");
-            homePage.TargetMenu.SelectLanguage("Russian");
+            homePage.SourceMenu.SelectLanguage(sourceLanguage);
+            homePage.TargetMenu.SelectLanguage(targetLanguage);
             homePage.FillInSource(text);
 
             //Assert
             var actualResult = homePage.GetTargetText();
             Assert.AreEqual(expectedResult, actualResult);
-
         }
 
-        [Test]
-        public void TestPerAspera()
-        {
-            //Arrange
-            var text = "Per aspera ad astra";
-            var expectedResult = "Через трудности для звезд";
 
-            //Act
-            homePage.SourceMenu.SelectLanguage("Latin");
-            homePage.TargetMenu.SelectLanguage("Russian");
-            homePage.FillInSource(text);
+        #endregion
 
-            //Assert
-            var actualResult = homePage.GetTargetText();
-            Assert.AreEqual(expectedResult, actualResult);
-        }
 
-        [Test]
 
-        public void TestForHello()
-        {
-            //Arrange
-            var text = "Hello";
-            var expectedResult = "Ciao";
-            var afterReverseExpectedSourceLanguage = "ITALIAN";
-            var afterReverseExpectedTargetLanguage = "ENGLISH";
+        #region Tests (w/o TDD)
+        //[Test]
+        //public void TestForCat()
+        //{
+        //    //Arrange
+        //    var text = "cat";
+        //    var expectedResult = "кошка";
 
-            //Act and assert
-            homePage.SourceMenu.SelectLanguage("English");
-            homePage.TargetMenu.SelectLanguage("Italian");
-            homePage.FillInSource(text);
+        //    //Act
+        //    homePage.SourceMenu.SelectLanguage("English");
+        //    homePage.TargetMenu.SelectLanguage("Russian");
+        //    homePage.FillInSource(text);
 
-            var actualResult = homePage.GetTargetText();
-            Assert.AreEqual(expectedResult, actualResult);
+        //    //Assert
+        //    var actualResult = homePage.GetTargetText();
+        //    Assert.AreEqual(expectedResult, actualResult);
 
-            //CLICK REVERSE
-            //Act and assert
-            homePage.ReverseButton.ClickButton();
-            Thread.Sleep(200);
-            var actualResultAfterReverse = homePage.GetTargetText();
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(text, actualResultAfterReverse);
-                Assert.AreEqual(homePage.SourceMenu.SelectedLanguage, afterReverseExpectedSourceLanguage);
-                Assert.AreEqual(homePage.TargetMenu.SelectedLanguage, afterReverseExpectedTargetLanguage);
-            });
-        }
+        //}
+
+        //[Test]
+        //public void TestPerAspera()
+        //{
+        //    //Arrange
+        //    var text = "Per aspera ad astra";
+        //    var expectedResult = "Через трудности для звезд";
+
+        //    //Act
+        //    homePage.SourceMenu.SelectLanguage("Latin");
+        //    homePage.TargetMenu.SelectLanguage("Russian");
+        //    homePage.FillInSource(text);
+
+        //    //Assert
+        //    var actualResult = homePage.GetTargetText();
+        //    Assert.AreEqual(expectedResult, actualResult);
+        //}
+
+        //[Test]
+
+        //public void TestForHello()
+        //{
+        //    //Arrange
+        //    var text = "Hello";
+        //    var expectedResult = "Ciao";
+        //    var afterReverseExpectedSourceLanguage = "ITALIAN";
+        //    var afterReverseExpectedTargetLanguage = "ENGLISH";
+
+        //    //Act and assert
+        //    homePage.SourceMenu.SelectLanguage("English");
+        //    homePage.TargetMenu.SelectLanguage("Italian");
+        //    homePage.FillInSource(text);
+
+        //    var actualResult = homePage.GetTargetText();
+        //    Assert.AreEqual(expectedResult, actualResult);
+
+        //    //CLICK REVERSE
+        //    //Act and assert
+        //    homePage.ReverseButton.ClickButton();
+        //    Thread.Sleep(200);
+        //    var actualResultAfterReverse = homePage.GetTargetText();
+        //    Assert.Multiple(() =>
+        //    {
+        //        Assert.AreEqual(text, actualResultAfterReverse);
+        //        Assert.AreEqual(homePage.SourceMenu.SelectedLanguage, afterReverseExpectedSourceLanguage);
+        //        Assert.AreEqual(homePage.TargetMenu.SelectedLanguage, afterReverseExpectedTargetLanguage);
+        //    });
+        //}
+        #endregion
     }
 }

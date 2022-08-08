@@ -1,0 +1,4 @@
+English,Russian,cat,кошка,
+English,Russian,dog,собака
+English,Russian,mouse,мыши
+English,Italian,Hello,Ciao
