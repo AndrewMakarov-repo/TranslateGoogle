@@ -2,6 +2,7 @@
 using Core.Utilities;
 using Core.Utilities.Extentions;
 using OpenQA.Selenium;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,6 +75,8 @@ namespace PageObjects.Components
             {
                 SelectLanguageFromMoreMenu(language);
             }
+            Log.Logger.Information($"Typing language {language}");
+
         }
 
         private void SelectLanguageFromMoreMenu(string language)
@@ -95,11 +98,10 @@ namespace PageObjects.Components
             
             Wait.For(() => rootElement.FindElements(By.XPath(string.Format(SelectedElementFromDropDownLocator, language))).Any(x => x.Displayed));
             var selectedSourceElementFromDropDown = this.rootElement.FindElements(By.XPath(string.Format(SelectedElementFromDropDownLocator, language)));
-            Console.WriteLine(selectedSourceElementFromDropDown.Count);
+            //Console.WriteLine(selectedSourceElementFromDropDown.Count);
             var selectedLanguageFromDropDown = selectedSourceElementFromDropDown.Where(x => x.Displayed).FirstOrDefault();
 
             driver.HoverAndClick(selectedLanguageFromDropDown);
-
         }
 
         private void SelectQuickMenu(string language)

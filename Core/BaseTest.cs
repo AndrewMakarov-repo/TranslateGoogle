@@ -17,7 +17,7 @@ namespace Core
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
-                .WriteTo.File("log-{Date}.txt")
+                .WriteTo.File($"log-{DateTime.Now.ToString("dd-MM-yy hh-mm-ss")}.txt")
                 .CreateLogger();
         }
 

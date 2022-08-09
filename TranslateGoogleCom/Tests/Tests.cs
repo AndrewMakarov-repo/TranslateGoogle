@@ -1,5 +1,6 @@
 ﻿using Core;
 using NUnit.Framework;
+using Serilog;
 using TranslateGoogleCom.PageObjects;
 
 namespace TranslateGoogleCom.Tests
@@ -55,12 +56,17 @@ namespace TranslateGoogleCom.Tests
 
             //Act
             homePage.SourceMenu.SelectLanguage(sourceLanguage);
+            //Log.Logger.Information($"Typing source language {sourceLanguage}");
             homePage.TargetMenu.SelectLanguage(targetLanguage);
-            homePage.FillInSource(text);
+            //Log.Logger.Information($"Typing target language {targetLanguage}");
 
-            //Assert
+            homePage.FillInSource(text);
+            //Log.Logger.Information($"Typing source word {text}");
+
+
+            //Assertxt
             var actualResult = homePage.GetTargetText();
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedResult, actualResult, "Text should be the same.");
         }
 
 

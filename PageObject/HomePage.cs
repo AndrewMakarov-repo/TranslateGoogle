@@ -2,6 +2,7 @@
 using Core.Utilities;
 using OpenQA.Selenium;
 using PageObjects.Components;
+using Serilog;
 
 namespace TranslateGoogleCom.PageObjects
 {
@@ -52,6 +53,7 @@ namespace TranslateGoogleCom.PageObjects
             var sourceTextArea = this.driver.FindElement(SourceTextAreaLocator);
             sourceTextArea.SendKeys(text);
             sourceTextArea.SendKeys(Keys.Enter);
+            Log.Logger.Information($"Typing source word {text}");
         }
 
         //property for reverse button (instance of the reverse button)
