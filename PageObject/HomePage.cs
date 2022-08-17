@@ -14,7 +14,7 @@ namespace TranslateGoogleCom.PageObjects
         private static readonly By SourceTextAreaLocator = By.XPath("//textarea[@aria-label='Source text']");
         private static readonly By ReverseButtonLocator = By.XPath("(.//*[@aria-label='Swap languages (Ctrl+Shift+S)'])[1]");   
         //".//*[@id='ow25']/div/span/button/div[3]") it works too.//*[@id='ow25']//button
-
+     //
         private IWebDriver driver;
 
         //ctor
